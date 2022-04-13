@@ -1,5 +1,4 @@
 import React from 'react'
-import './Link.css'
 
 
 const Link = () => {
@@ -7,14 +6,11 @@ const Link = () => {
     const [state, setState] = React.useState(JSON.parse(localStorage.getItem('data')))
     const [search, setsearch] = React.useState()
 
-    console.log(state)
-
     let localStoragedata = JSON.parse(localStorage.getItem('data'))
 
-    console.log(localStoragedata)
+    // Delete Function
 
     const del = (data) => {
-
         const getlocstrdata = localStorage.getItem('data')
         if (getlocstrdata) {
             const likedarray = JSON.parse(getlocstrdata)
@@ -25,12 +21,13 @@ const Link = () => {
         }
     }
 
+    // filter function
+
     const filterdata = () => {
         setState(state.filter((ele) => {
             if (
                 ele.name.toLowerCase() === search.toLowerCase() || ele.gender.toLowerCase() === search.toLowerCase() || ele.status.toLowerCase() === search.toLowerCase() || ele.species.toLowerCase() === search.toLowerCase()
             ) {
-                console.log(ele)
                 return ele;
             }
         }))
@@ -38,15 +35,15 @@ const Link = () => {
 
     return (
         <div>
-            <div className="search-menu">
-                <b><button className='btn-dark mx-3' id="blue-btn" onClick={filterdata} >Search</button></b>
-
-                <input className='form-control' id='search-box' onChange={(event) => setsearch(event.target.value)} style={{ border: "2px solid black", width: 'auto' }} type="search" placeholder='search-details' />
+            <div className="container">
+                <form class="d-flex">
+                    <input onChange={(event) => setsearch(event.target.value)} class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                    <button onClick={filterdata} class="btn btn-light" type="submit">Search</button>
+                </form>
             </div>
-
             <div className="row">
                 {
-                    localStoragedata.map((localStoragedata, ind) => {
+                    state.map((localStoragedata) => {
 
                         return <>
                             <div className="flip-card p-2 m-2">
@@ -55,13 +52,13 @@ const Link = () => {
                                         <img src={localStoragedata.image} />
                                     </div>
                                     <div className="flip-card-back">
-                                        <h2>Name:{localStoragedata.name}</h2>
+                                    <h5 className='mt-3'>NAME - <b>{localStoragedata.name}</b></h5>
                                         <hr />
-                                        <h3>gender:{localStoragedata.gender}</h3>
-                                        <h5>species:{localStoragedata.species}</h5>
-                                        <h6>stauts:{localStoragedata.status}</h6>
+                                        <h6>GENDER - <b>{localStoragedata.gender}</b></h6>
+                                        <p>SPECIES - <b>{localStoragedata.species}</b></p>
+                                        <p>STATUS - <b>{localStoragedata.status}</b></p>
                                         <hr />
-                                        <button className='btn btn-danger' onClick={() => del(localStoragedata)}><h4>Hate @ me</h4></button>
+                                        <button className='btn btn-danger' onClick={() => del(localStoragedata)}><h6><b>Dislike</b></h6></button>
                                     </div>
                                 </div>
                             </div>

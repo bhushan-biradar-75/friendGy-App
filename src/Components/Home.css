@@ -1,13 +1,35 @@
+/* background color of home component */
+
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: rgb(239, 197, 197);
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  height: 100vh;
   }
+  
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  /* card editing */
   
   .flip-card {
     background-color: transparent;
     width: 300px;
     height: 300px;
     perspective: 1000px;
+    padding: auto;
+    margin: auto;
+    margin-bottom: 2.5%;
+    margin-top: 2%;
   }
   
   .flip-card-inner {
@@ -17,7 +39,9 @@ body {
     text-align: center;
     transition: transform 0.6s;
     transform-style: preserve-3d;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 10px 10px 0 rgba(6, 6, 6, 0.2);
+    padding: auto;
+    margin: auto;
   }
   
   .flip-card:hover .flip-card-inner {
@@ -30,6 +54,8 @@ body {
     height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    border-radius: 16px;
+
   }
   
   .flip-card-front {
@@ -38,12 +64,65 @@ body {
   }
   
   .flip-card-back {
-    background-color: #2980b9;
+    background-color: #142850;
     color: white;
     transform: rotateY(180deg);
   }
-  /* .btn{
-      height: 100px;
-      width: 100px;
-    color: white;
-  } */
+  
+
+  /* search bar design */
+
+  .form-control{
+    margin-top: 10px;
+    opacity: 0.5;
+    border:5px solid black; 
+  }
+
+
+/* Search bar button */
+
+
+/* From uiverse.io by @alexroumi */
+.btn {
+  padding: 9px 18px;
+  border: unset;
+  border-radius: 15px;
+  color: #212121;
+  z-index: 1;
+  background: #e8e8e8;
+  position: relative;
+  font-weight: 1000;
+  font-size: 17px;
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+  transition: all 250ms;
+  overflow: hidden;
+  margin-top: 10px;
+ }
+ 
+ .btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  border-radius: 15px;
+  background-color: #212121;
+  z-index: -1;
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+  transition: all 250ms
+ }
+ 
+ .btn:hover {
+  color: #e8e8e8;
+ }
+ 
+ .btn:hover::before {
+  width: 100%;
+ }
+
+
+
+
